@@ -1,19 +1,38 @@
 import unittest
 import pandas as pd
+from task1.task1a import map_replace
 
-class MyTestCase(unittest.TestCase):
+
+class TestDataReader(unittest.TestCase):
+    def test_validate_results(self):
+        """Check there are end results."""
+        restaurants = pd.read_csv("results/restaurants.csv")
+        restaurant_events = pd.read_csv("results/restaurant_events.csv")
+        self.assertIsNotNone(restaurants)
+        self.assertIsNotNone(restaurant_events)
+        self.assertTrue(len(restaurants) > 0)
+        self.assertTrue(len(restaurant_events) > 0)
+
+    def test_duplicates(self):
+        """Check for duplicates in the data."""
+        restaurants = pd.read_csv("results/restaurants.csv")
+        restaurant_events = pd.read_csv("results/restaurant_events.csv")
+        duplicate_restaurants = restaurants[restaurants.duplicated()]
+        duplicate_events = restaurant_events[restaurant_events.duplicated()]
+        self.assertEqual(len(duplicate_restaurants), 0)
+        self.assertEqual(len(duplicate_events), 0)
+
     def test_missing_values(self):
-        df = pd.DataFrame({'A': [1, 2, None, 4, 5], 'B': [None, 2, 3, 4, 5]})
-        
-        # Assert that there are missing values in the DataFrame
-        self.assertTrue(df.isnull().values.any(), "Missing values found in the DataFrame")
+        """Check for missing values in the data."""
+        restaurants = pd.read_csv("results/restaurants.csv")
+        restaurant_events = pd.read_csv("results/restaurant_events.csv")
+        self.assertFalse(restaurants.isnull().values.any())
+        self.assertFalse(restaurant_events.isnull().values.any())
     
-    def test_duplicate_values(self):
-        df = pd.DataFrame({'A': [1, 2, 3, 4, 5], 'B': [1, 2, 3, 4, 5]})
+    def test_map_replace(self):    
+        pass
         
-        # Assert that there are duplicate values in the DataFrame
-        self.assertTrue(df.duplicated().any(), "Duplicate values found in the DataFrame")
-
-
+    
+        
 if __name__ == '__main__':
     unittest.main()

@@ -12,8 +12,10 @@ def get_events(restuarant_list):
     for entry in restuarant_list:
         try:
             restaurant = entry.get('restaurant', {})
-            restaurant_id = restaurant.get('restaurant', {}).get('R', {}).get('res_id', "NA")
-            restaurant_name = restaurant.get('restaurant', {}).get('name', "NA").strip()
+            
+            restaurant_id = restaurant.get('R', {}).get('res_id', "NA")
+            restaurant_name = restaurant.get('name', "NA").strip()
+            
             zomato_events = restaurant.get('zomato_events', [])
             
             for item in zomato_events:
@@ -22,17 +24,17 @@ def get_events(restuarant_list):
                 photos = event.get('photos', [])
                 
                 ## Set default as NA
-                photo_URL = "NA"
+                photo_url = "NA"
                 
                 if photos:
                     photo = photos[0]
-                    photo_URL = photo.get('photo', {}).get('URL', "NA")
+                    photo_url = photo.get('photo', {}).get('url', "NA")
                 
                 event_title = event.get('title', "NA").strip()
                 event_start_date = event.get('start_date', "NA")
                 event_end_date = event.get('end_date', "NA")
                 
-                result.append([event_id, restaurant_id, restaurant_name, photo_URL, event_title, event_start_date, event_end_date])
+                result.append([event_id, restaurant_id, restaurant_name, photo_url, event_title, event_start_date, event_end_date])
         except Exception as e:
             logging.error("An error occurred while processing restaurant")
     

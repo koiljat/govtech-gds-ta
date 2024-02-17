@@ -1,8 +1,8 @@
 import pandas as pd
 from helper import *
-from task1a import *
-from task1b import *
-from task1c import *
+from task1.task1a import *
+from task1.task1b import *
+from task1.task1c import *
 
 URL = "https://raw.githubusercontent.com/Papagoat/brain-assessment/main/restaurant_data.json"
 

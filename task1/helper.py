@@ -1,18 +1,32 @@
 import pandas as pd
 import requests
+import logging
+
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s - %(levelname)s - %(message)s',
+                    datefmt='%Y-%m-%d %H:%M:%S')
 
 def fetch_data(url):
-    response = requests.get(url)
-    if response.status_code == 200:
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        logging.info("JSON Data fetched successfully")
         return response.json()
-    else:
-        print(f"Request failed with status code {response.status_code}")
+    except requests.HTTPError as http_err:
+        logging.error("HTTP error occurred: %s", http_err)
+        raise
+    except Exception as err:
+        logging.error("An error occurred: %s", err)
+        raise
+
         
 def get_restuarants(data):
+    '''Get the restaurants from the given data.'''
+        
     restuarant_list = []
 
     for page in data:
         for restaurant in page['restaurants']:
             restuarant_list.append(restaurant)
-    
+            
     return restuarant_list

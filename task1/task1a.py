@@ -1,29 +1,36 @@
-def get_details(restuarant_list):
-    result = []
-    
-    for entry in restuarant_list:
-        restaurant = entry.get('restaurant', {})
-        # Get the restaurant id
-        restaurant_id = restaurant.get('R', {}).get('res_id', "NA")
-        # Get the restaurant name
-        restaurant_name = restaurant.get('name', "NA")
-        # Get the country_id
-        country_id = restaurant.get('location', {}).get('country_id', "NA")
-        # Get the city name
-        city = restaurant.get('location', {}).get('city', "NA")
-        # Get the User Rating Votes
-        votes = restaurant.get('user_rating', {}).get('votes', "NA")
-        # Get the User Aggregate Rating
-        aggregate_rating = restaurant.get('user_rating', {}).get('aggregate_rating', "NA")
-        # Get the Cuisines
-        cuisines = restaurant.get('cuisines', "NA")
-        
-        result.append([restaurant_id, restaurant_name, country_id, city, votes, aggregate_rating, cuisines])
-        
-    return result
+import logging
+
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s - %(levelname)s - %(message)s',
+                    datefmt='%Y-%m-%d %H:%M:%S')
 
 columns = ['Restaurant Id', 'Restaurant Name', 'Country', 'City', 'User Rating Votes', 'User Aggregate Rating', 'Cuisines']
 
+def get_details(data):
+    '''Get the details from the given list of restaurants.'''
+    result = []
+    
+    for restaurant in data:
+        try:
+            restaurant_id = restaurant.get('R', {}).get('res_id', "NA")
+            restaurant_name = restaurant.get('name', "NA")
+            country_id = restaurant.get('location', {}).get('country_id', "NA")
+            city = restaurant.get('location', {}).get('city', "NA")
+            votes = restaurant.get('user_rating', {}).get('votes', "NA")
+            aggregate_rating = restaurant.get('user_rating', {}).get('aggregate_rating', "NA")
+            cuisines = restaurant.get('cuisines', "NA")
+            
+            result.append([restaurant_id, restaurant_name, country_id, city, votes, aggregate_rating, cuisines])
+        except Exception as e:
+            logging.error("An error occurred while processing restaurant")
+    
+    return result
+
 def map_replace(df, column, mapping):
-    df[column] = df[column].map(mapping.set_index('Country Code')[column])
-    return df
+    '''Replace the values in the given column with the values from the mapping dataframe.'''
+    try:    
+        df[column] = df[column].map(mapping.set_index('Country Code')[column])
+        return df
+    except Exception as e:
+        logging.error("An error occurred while mapping and replacing values")
+        raise

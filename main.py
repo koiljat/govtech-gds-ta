@@ -19,6 +19,7 @@ if __name__ == "__main__":
     try:
         logging.info("Fetching data...")
         data = fetch_data(URL)
+        ## data = read_json('data/restaurant_data.json') # Replace the line above with this if you are not able to fetch the data from the URL.
         
     except Exception as e:
         logging.error(f"An error occurred while fetching data: {e}")
@@ -26,7 +27,7 @@ if __name__ == "__main__":
 
     try:
         logging.info("Reading the Excel file...")
-        country_df = pd.read_excel('Country-Code.xlsx')
+        country_df = pd.read_excel('data/Country-Code.xlsx')
     except Exception as e:
         logging.error(f"An error occurred while reading the Excel file: {e}")
         raise

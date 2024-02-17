@@ -1,4 +1,4 @@
-import pandas as pd
+import json
 import requests
 import logging
 
@@ -30,3 +30,15 @@ def get_restuarants(data):
             restuarant_list.append(restaurant)
             
     return restuarant_list
+
+
+## This function will only be used if app is unable to fetch the data from the URL.
+def read_json(file_name):
+    '''Read the JSON file and return the data.'''
+    try:
+        with open(file_name, 'r') as file:
+            data = json.load(file)
+        return data
+    except Exception as e:
+        logging.error("An error occurred while reading the JSON file")
+        raise

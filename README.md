@@ -66,8 +66,11 @@ Follow these steps to set up your development environment:
 
 After setting up the virtual environment and installing the dependencies, you're ready to run the project. Here's an overview of the project structure and how to execute it:
 
-- **Jupyter Notebook**: For experimental code development.
+- **Jupyter Notebook**: For experimental code development, this outlines the development of the functions found in main.py.
 - **main.py**: The executable script for the data pipeline, you will need to run this script to generate the results for task 1.
 - **Helper Functions**: Located in the `task1` folder, with specific functions for each subtask in `task1a`, `task1b`, and `task1c`.
 - **Data Retrieval**: Attempts to fetch JSON data from the provided URL. In case of errors, the JSON dataset is available in the `data` folder. See `main.py` for instructions on adjusting the data source.
+- **Results**: You may find ther result for task 1 in the resutls folder. Alternatively, you may also run the main.py script and the csv files will be saved to the local folder.
+
+
 

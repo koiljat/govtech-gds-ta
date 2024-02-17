@@ -35,6 +35,7 @@ if __name__ == "__main__":
         logging.info("Running task 1a")
         restuarant_list = get_restuarants(data)
         restuarant_df = pd.DataFrame(get_details(restuarant_list), columns=columns)
+        print(restuarant_df)
         final_restuarant_df = map_replace(restuarant_df, 'Country', country_df)
         final_restuarant_df.to_csv("restaurants.csv")
         logging.info("restaurants.csv saved")

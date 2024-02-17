@@ -6,12 +6,13 @@ logging.basicConfig(level=logging.DEBUG,
 
 columns = ['Restaurant Id', 'Restaurant Name', 'Country', 'City', 'User Rating Votes', 'User Aggregate Rating', 'Cuisines']
 
-def get_details(data):
+def get_details(restuarant_list):
     '''Get the details from the given list of restaurants.'''
     result = []
     
-    for restaurant in data:
+    for entry in restuarant_list:
         try:
+            restaurant = entry.get('restaurant', {})
             restaurant_id = restaurant.get('R', {}).get('res_id', "NA")
             restaurant_name = restaurant.get('name', "NA")
             country_id = restaurant.get('location', {}).get('country_id', "NA")
@@ -21,6 +22,7 @@ def get_details(data):
             cuisines = restaurant.get('cuisines', "NA")
             
             result.append([restaurant_id, restaurant_name, country_id, city, votes, aggregate_rating, cuisines])
+    
         except Exception as e:
             logging.error("An error occurred while processing restaurant")
     

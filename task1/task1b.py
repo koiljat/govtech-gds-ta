@@ -7,10 +7,11 @@ logging.basicConfig(level=logging.DEBUG,
 
 events_columns = ['Event Id', 'Restaurant Id', 'Restaurant Name', 'Photo URL', 'Event Title', 'Event Start Date', 'Event End Date']
 
-def get_events(restaurants):
+def get_events(restuarant_list):
     result = []
-    for restaurant in restaurants:
+    for entry in restuarant_list:
         try:
+            restaurant = entry.get('restaurant', {})
             restaurant_id = restaurant.get('restaurant', {}).get('R', {}).get('res_id', "NA")
             restaurant_name = restaurant.get('restaurant', {}).get('name', "NA").strip()
             zomato_events = restaurant.get('zomato_events', [])

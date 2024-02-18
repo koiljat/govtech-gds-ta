@@ -37,7 +37,7 @@ if __name__ == "__main__":
         restuarant_list = get_restuarants(data)
         restuarant_df = pd.DataFrame(get_details(restuarant_list), columns=columns)
         final_restuarant_df = map_replace(restuarant_df, 'Country', country_df)
-        final_restuarant_df.to_csv("restaurants.csv")
+        final_restuarant_df.to_csv("restaurants.csv", index=False)
         logging.info("restaurants.csv saved")
         
     except Exception as e:
@@ -48,7 +48,7 @@ if __name__ == "__main__":
         logging.info("Running task 1b")
         event_df = pd.DataFrame(get_events(restuarant_list), columns=events_columns)
         filtered_event_df = filter_april(event_df)
-        filtered_event_df.to_csv('restaurant_events.csv')
+        filtered_event_df.to_csv('restaurant_events.csv', index=False)
         logging.info("restaurant_events.csv saved")
         
     except Exception as e:

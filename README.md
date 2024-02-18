@@ -84,7 +84,7 @@ Poor: 2.2 to 2.2 (Below 2.5)
 
 ## Task 2
 
-![image](https://github.com/koiljat/govtech-gds-ta/assets/124496128/f846bdaf-186d-42f1-bd6a-1d3b588cca51)
+![image](https://github.com/koiljat/govtech-gds-ta/assets/124496128/56852e6a-a4f4-4a42-92bd-8f48f020542c)
 
 - Amazon API Gateway: Entry point for the Carpark Availability API, handling incoming requests.
 - AWS Lambda: Serverless compute to process the requests and query the database.

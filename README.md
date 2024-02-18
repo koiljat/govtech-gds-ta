@@ -21,7 +21,7 @@ Follow these steps to set up your development environment:
     Clone the project repository to your local machine using Git:
 
     ```bash
-    git clone https://github.com/yourusername/govtech-gds-ta.git
+    git clone https://github.com/koiljat/govtech-gds-ta.git
     ```
 
 2. **Create a Virtual Environment**

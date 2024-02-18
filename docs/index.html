@@ -689,28 +689,64 @@
   <script>
     // Script section to load models into a JS Var
     var defs = {}
-            defs["CarparkAvailability"] = {
+            defs["CarparkDetails"] = {
   "type" : "object",
   "properties" : {
-    "carparkId" : {
-      "type" : "string"
-    },
-    "totalLots" : {
-      "type" : "integer"
-    },
-    "lotType" : {
-      "type" : "string"
-    },
-    "lotsAvailable" : {
-      "type" : "integer"
-    },
-    "timestamp" : {
+    "carParkNo" : {
       "type" : "string",
-      "format" : "date-time"
+      "description" : "Unique carpark identifier."
     },
-    "updateDatetime" : {
+    "address" : {
       "type" : "string",
-      "format" : "date-time"
+      "description" : "Physical address of the carpark."
+    },
+    "xCoord" : {
+      "type" : "number",
+      "description" : "X coordinate of the carpark location.",
+      "format" : "double"
+    },
+    "yCoord" : {
+      "type" : "number",
+      "description" : "Y coordinate of the carpark location.",
+      "format" : "double"
+    },
+    "carParkType" : {
+      "type" : "string",
+      "description" : "Type of carpark (e.g., BASEMENT, MULTI-STOREY)."
+    },
+    "typeOfParkingSystem" : {
+      "type" : "string",
+      "description" : "Parking system in use (e.g., ELECTRONIC, COUPON)."
+    },
+    "shortTermParking" : {
+      "type" : "string",
+      "description" : "Availability of short-term parking."
+    },
+    "freeParking" : {
+      "type" : "string",
+      "description" : "Availability of free parking."
+    },
+    "nightParking" : {
+      "type" : "string",
+      "description" : "Availability of night parking."
+    },
+    "carParkDecks" : {
+      "type" : "integer",
+      "description" : "Number of parking decks."
+    },
+    "gantryHeight" : {
+      "type" : "number",
+      "description" : "Height of the parking gantry in meters.",
+      "format" : "double"
+    },
+    "carParkBasement" : {
+      "type" : "string",
+      "description" : "Indicates if the car park is a basement (Y/N)."
+    },
+    "hourlyRate" : {
+      "type" : "number",
+      "description" : "Hourly rate for parking.",
+      "format" : "double"
     }
   }
 };
@@ -731,14 +767,14 @@
             <li class="nav-fixed nav-header active" data-group="_"><a href="#api-_">API Summary</a></li>
 
                   <li class="nav-header" data-group="Default"><a href="#api-Default">API Methods - Default</a></li>
-                    <li data-group="Default" data-name="carparksAvailabilitySearchGet" class="">
-                      <a href="#api-Default-carparksAvailabilitySearchGet">carparksAvailabilitySearchGet</a>
-                    </li>
-                    <li data-group="Default" data-name="carparksCarparkIdAvailabilityGet" class="">
-                      <a href="#api-Default-carparksCarparkIdAvailabilityGet">carparksCarparkIdAvailabilityGet</a>
+                    <li data-group="Default" data-name="carparksCarparkIdGet" class="">
+                      <a href="#api-Default-carparksCarparkIdGet">carparksCarparkIdGet</a>
                     </li>
                     <li data-group="Default" data-name="carparksNearbyGet" class="">
                       <a href="#api-Default-carparksNearbyGet">carparksNearbyGet</a>
+                    </li>
+                    <li data-group="Default" data-name="carparksSearchGet" class="">
+                      <a href="#api-Default-carparksSearchGet">carparksSearchGet</a>
                     </li>
           </ul>
         </nav>
@@ -755,17 +791,17 @@
             <h2 id="welcome-to-apidoc">API and SDK Documentation</h2>
               <div class="app-desc">Version: 1.0.0</div>
             <hr>
-            <div>API to retrieve and update carpark availability information.</div>
+            <div>API to retrieve detailed information and availability of car parks, with functionality to filter by gantry height and parking fee.</div>
           </div>
         </div>
         <div id="sections">
                 <section id="api-Default">
                   <h1>Default</h1>
-                    <div id="api-Default-carparksAvailabilitySearchGet">
-                      <article id="api-Default-carparksAvailabilitySearchGet-0" data-group="User" data-name="carparksAvailabilitySearchGet" data-version="0">
+                    <div id="api-Default-carparksCarparkIdGet">
+                      <article id="api-Default-carparksCarparkIdGet-0" data-group="User" data-name="carparksCarparkIdGet" data-version="0">
                         <div class="pull-left">
-                          <h1>carparksAvailabilitySearchGet</h1>
-                          <p>Get Carpark Availability by Location</p>
+                          <h1>carparksCarparkIdGet</h1>
+                          <p>Get Carpark Details and Availability by ID</p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
@@ -773,331 +809,31 @@
                         <p class="marked"></p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/carparks/availability/search</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/carparks/{carparkId}</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-carparksAvailabilitySearchGet-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-carparksAvailabilitySearchGet-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-carparksAvailabilitySearchGet-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-carparksAvailabilitySearchGet-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-carparksAvailabilitySearchGet-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-carparksAvailabilitySearchGet-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-carparksAvailabilitySearchGet-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-carparksAvailabilitySearchGet-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-carparksAvailabilitySearchGet-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-carparksAvailabilitySearchGet-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-carparksAvailabilitySearchGet-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-Default-carparksCarparkIdGet-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-carparksCarparkIdGet-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-carparksCarparkIdGet-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-carparksCarparkIdGet-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-carparksCarparkIdGet-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-carparksCarparkIdGet-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-carparksCarparkIdGet-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-carparksCarparkIdGet-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-carparksCarparkIdGet-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-carparksCarparkIdGet-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-carparksCarparkIdGet-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-carparksAvailabilitySearchGet-0-curl">
+                          <div class="tab-pane active" id="examples-Default-carparksCarparkIdGet-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: application/json"\
-"https://virtserver.swaggerhub.com/KOILJAT/test/1.0.0/carparks/availability/search?address="</code></pre>
+"https://virtserver.swaggerhub.com/KOILJAT/test/1.0.0/carparks/{carparkId}"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Default-carparksAvailabilitySearchGet-0-java">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.DefaultApi;
-
-import java.io.File;
-import java.util.*;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        
-        DefaultApi apiInstance = new DefaultApi();
-        String address = address_example; // String | Address to search for nearby carparks.
-        try {
-            array[CarparkAvailability] result = apiInstance.carparksAvailabilitySearchGet(address);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#carparksAvailabilitySearchGet");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-
-                          <div class="tab-pane" id="examples-Default-carparksAvailabilitySearchGet-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        DefaultApi apiInstance = new DefaultApi();
-        String address = address_example; // String | Address to search for nearby carparks.
-        try {
-            array[CarparkAvailability] result = apiInstance.carparksAvailabilitySearchGet(address);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#carparksAvailabilitySearchGet");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-  <!--
-  <div class="tab-pane" id="examples-Default-carparksAvailabilitySearchGet-0-groovy">
-  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-  </div> -->
-                            <div class="tab-pane" id="examples-Default-carparksAvailabilitySearchGet-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">String *address = address_example; // Address to search for nearby carparks.
-
-DefaultApi *apiInstance = [[DefaultApi alloc] init];
-
-// Get Carpark Availability by Location
-[apiInstance carparksAvailabilitySearchGetWith:address
-              completionHandler: ^(array[CarparkAvailability] output, NSError* error) {
-                            if (output) {
-                                NSLog(@"%@", output);
-                            }
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-carparksAvailabilitySearchGet-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var CarparkAvailabilityApi = require('carpark_availability_api');
-
-var api = new CarparkAvailabilityApi.DefaultApi()
-var address = address_example; // {{String}} Address to search for nearby carparks.
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-api.carparksAvailabilitySearchGet(address, callback);
-</code></pre>
-                            </div>
-
-                            <!--<div class="tab-pane" id="examples-Default-carparksAvailabilitySearchGet-0-angular">
-              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-            </div>-->
-                            <div class="tab-pane" id="examples-Default-carparksAvailabilitySearchGet-0-csharp">
-                              <pre class="prettyprint"><code class="language-cs">using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class carparksAvailabilitySearchGetExample
-    {
-        public void main()
-        {
-
-            var apiInstance = new DefaultApi();
-            var address = address_example;  // String | Address to search for nearby carparks.
-
-            try
-            {
-                // Get Carpark Availability by Location
-                array[CarparkAvailability] result = apiInstance.carparksAvailabilitySearchGet(address);
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling DefaultApi.carparksAvailabilitySearchGet: " + e.Message );
-            }
-        }
-    }
-}
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-carparksAvailabilitySearchGet-0-php">
-                              <pre class="prettyprint"><code class="language-php"><&#63;php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-$api_instance = new Swagger\Client\ApiDefaultApi();
-$address = address_example; // String | Address to search for nearby carparks.
-
-try {
-    $result = $api_instance->carparksAvailabilitySearchGet($address);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->carparksAvailabilitySearchGet: ', $e->getMessage(), PHP_EOL;
-}
-?></code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-carparksAvailabilitySearchGet-0-perl">
-                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::DefaultApi;
-
-my $api_instance = WWW::SwaggerClient::DefaultApi->new();
-my $address = address_example; # String | Address to search for nearby carparks.
-
-eval { 
-    my $result = $api_instance->carparksAvailabilitySearchGet(address => $address);
-    print Dumper($result);
-};
-if ($@) {
-    warn "Exception when calling DefaultApi->carparksAvailabilitySearchGet: $@\n";
-}</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-carparksAvailabilitySearchGet-0-python">
-                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
-import time
-import swagger_client
-from swagger_client.rest import ApiException
-from pprint import pprint
-
-# create an instance of the API class
-api_instance = swagger_client.DefaultApi()
-address = address_example # String | Address to search for nearby carparks.
-
-try: 
-    # Get Carpark Availability by Location
-    api_response = api_instance.carparks_availability_search_get(address)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling DefaultApi->carparksAvailabilitySearchGet: %s\n" % e)</code></pre>
-                            </div>
-                          </div>
-
-                          <h2>Parameters</h2>
-
-
-
-
-
-                            <div class="methodsubtabletitle">Query parameters</div>
-                            <table id="methodsubtable">
-                              <tr>
-                                <th width="150px">Name</th>
-                                <th>Description</th>
-                              </tr>
-                                <tr><td style="width:150px;">address*</td>
-                                <td>
-                                
-                                
-                                    <div id="d2e199_carparksAvailabilitySearchGet_address">
-                                        <div class="json-schema-view">
-                                            <div class="primitive">
-                                                <span class="type">
-                                                    String
-                                                </span>
-                                
-                                                    <div class="inner description">
-                                                        Address to search for nearby carparks.
-                                                    </div>
-                                            </div>
-                                                <div class="inner required">
-                                                    Required
-                                                </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                </tr>
-                            </table>
-
-                          <h2>Responses</h2>
-                            <h3> Status: 200 - A list of carparks and their availability returned successfully. </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-carparksAvailabilitySearchGet-200-schema">Schema</a>
-                                </li>
-
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-carparksAvailabilitySearchGet-200-schema">
-                                  <div id='responses-carparksAvailabilitySearchGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                    <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "A list of carparks and their availability returned successfully.",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "type" : "array",
-        "items" : {
-          "$ref" : "#/components/schemas/CarparkAvailability"
-        },
-        "x-content-type" : "application/json"
-      }
-    }
-  }
-};
-                                        var schema = schemaWrapper.content["application/json"].schema;
-                                        if (schema.$ref != null) {
-                                          schema = defsParser.$refs.get(schema.$ref);
-                                        } else {
-                                          schemaWrapper.components = {};
-                                          schemaWrapper.components.schemas = Object.assign({}, defs);
-                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                            console.log(err);
-                                          });
-                                        }
-
-                                        //console.log(JSON.stringify(schema));
-                                        var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-carparksAvailabilitySearchGet-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-carparksAvailabilitySearchGet-200-schema-200');
-                                        result.empty();
-                                        result.append(view.render());
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-carparksAvailabilitySearchGet-200-schema-data' type='hidden' value=''></input>
-                                </div>
-                            </div>
-
-                        </article>
-                      </div>
-                      <hr>
-                    <div id="api-Default-carparksCarparkIdAvailabilityGet">
-                      <article id="api-Default-carparksCarparkIdAvailabilityGet-0" data-group="User" data-name="carparksCarparkIdAvailabilityGet" data-version="0">
-                        <div class="pull-left">
-                          <h1>carparksCarparkIdAvailabilityGet</h1>
-                          <p>Get Carpark Availability by ID</p>
-                        </div>
-                        <div class="pull-right"></div>
-                        <div class="clearfix"></div>
-                        <p></p>
-                        <p class="marked"></p>
-                        <p></p>
-                        <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/carparks/{carparkId}/availability</span></code></pre>
-                        <p>
-                          <h3>Usage and SDK Samples</h3>
-                        </p>
-                        <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-carparksCarparkIdAvailabilityGet-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-carparksCarparkIdAvailabilityGet-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-carparksCarparkIdAvailabilityGet-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-carparksCarparkIdAvailabilityGet-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-carparksCarparkIdAvailabilityGet-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-carparksCarparkIdAvailabilityGet-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-carparksCarparkIdAvailabilityGet-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-carparksCarparkIdAvailabilityGet-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-carparksCarparkIdAvailabilityGet-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-carparksCarparkIdAvailabilityGet-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-carparksCarparkIdAvailabilityGet-0-python">Python</a></li>
-                        </ul>
-
-                        <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-carparksCarparkIdAvailabilityGet-0-curl">
-                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
--H "Accept: application/json"\
-"https://virtserver.swaggerhub.com/KOILJAT/test/1.0.0/carparks/{carparkId}/availability"</code></pre>
-                          </div>
-                          <div class="tab-pane" id="examples-Default-carparksCarparkIdAvailabilityGet-0-java">
+                          <div class="tab-pane" id="examples-Default-carparksCarparkIdGet-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
@@ -1113,17 +849,17 @@ public class DefaultApiExample {
         DefaultApi apiInstance = new DefaultApi();
         String carparkId = carparkId_example; // String | The unique identifier of the carpark.
         try {
-            CarparkAvailability result = apiInstance.carparksCarparkIdAvailabilityGet(carparkId);
+            CarparkDetails result = apiInstance.carparksCarparkIdGet(carparkId);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#carparksCarparkIdAvailabilityGet");
+            System.err.println("Exception when calling DefaultApi#carparksCarparkIdGet");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Default-carparksCarparkIdAvailabilityGet-0-android">
+                          <div class="tab-pane" id="examples-Default-carparksCarparkIdGet-0-android">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
 
 public class DefaultApiExample {
@@ -1132,27 +868,27 @@ public class DefaultApiExample {
         DefaultApi apiInstance = new DefaultApi();
         String carparkId = carparkId_example; // String | The unique identifier of the carpark.
         try {
-            CarparkAvailability result = apiInstance.carparksCarparkIdAvailabilityGet(carparkId);
+            CarparkDetails result = apiInstance.carparksCarparkIdGet(carparkId);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#carparksCarparkIdAvailabilityGet");
+            System.err.println("Exception when calling DefaultApi#carparksCarparkIdGet");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Default-carparksCarparkIdAvailabilityGet-0-groovy">
+  <div class="tab-pane" id="examples-Default-carparksCarparkIdGet-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Default-carparksCarparkIdAvailabilityGet-0-objc">
+                            <div class="tab-pane" id="examples-Default-carparksCarparkIdGet-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">String *carparkId = carparkId_example; // The unique identifier of the carpark.
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
-// Get Carpark Availability by ID
-[apiInstance carparksCarparkIdAvailabilityGetWith:carparkId
-              completionHandler: ^(CarparkAvailability output, NSError* error) {
+// Get Carpark Details and Availability by ID
+[apiInstance carparksCarparkIdGetWith:carparkId
+              completionHandler: ^(CarparkDetails output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -1163,7 +899,7 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-carparksCarparkIdAvailabilityGet-0-javascript">
+                            <div class="tab-pane" id="examples-Default-carparksCarparkIdGet-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var CarparkAvailabilityApi = require('carpark_availability_api');
 
 var api = new CarparkAvailabilityApi.DefaultApi()
@@ -1176,14 +912,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.carparksCarparkIdAvailabilityGet(carparkId, callback);
+api.carparksCarparkIdGet(carparkId, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Default-carparksCarparkIdAvailabilityGet-0-angular">
+                            <!--<div class="tab-pane" id="examples-Default-carparksCarparkIdGet-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Default-carparksCarparkIdAvailabilityGet-0-csharp">
+                            <div class="tab-pane" id="examples-Default-carparksCarparkIdGet-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -1192,7 +928,7 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class carparksCarparkIdAvailabilityGetExample
+    public class carparksCarparkIdGetExample
     {
         public void main()
         {
@@ -1202,13 +938,13 @@ namespace Example
 
             try
             {
-                // Get Carpark Availability by ID
-                CarparkAvailability result = apiInstance.carparksCarparkIdAvailabilityGet(carparkId);
+                // Get Carpark Details and Availability by ID
+                CarparkDetails result = apiInstance.carparksCarparkIdGet(carparkId);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.carparksCarparkIdAvailabilityGet: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.carparksCarparkIdGet: " + e.Message );
             }
         }
     }
@@ -1216,7 +952,7 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-carparksCarparkIdAvailabilityGet-0-php">
+                            <div class="tab-pane" id="examples-Default-carparksCarparkIdGet-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
@@ -1224,15 +960,15 @@ $api_instance = new Swagger\Client\ApiDefaultApi();
 $carparkId = carparkId_example; // String | The unique identifier of the carpark.
 
 try {
-    $result = $api_instance->carparksCarparkIdAvailabilityGet($carparkId);
+    $result = $api_instance->carparksCarparkIdGet($carparkId);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->carparksCarparkIdAvailabilityGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->carparksCarparkIdGet: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-carparksCarparkIdAvailabilityGet-0-perl">
+                            <div class="tab-pane" id="examples-Default-carparksCarparkIdGet-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::DefaultApi;
@@ -1241,15 +977,15 @@ my $api_instance = WWW::SwaggerClient::DefaultApi->new();
 my $carparkId = carparkId_example; # String | The unique identifier of the carpark.
 
 eval { 
-    my $result = $api_instance->carparksCarparkIdAvailabilityGet(carparkId => $carparkId);
+    my $result = $api_instance->carparksCarparkIdGet(carparkId => $carparkId);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling DefaultApi->carparksCarparkIdAvailabilityGet: $@\n";
+    warn "Exception when calling DefaultApi->carparksCarparkIdGet: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-carparksCarparkIdAvailabilityGet-0-python">
+                            <div class="tab-pane" id="examples-Default-carparksCarparkIdGet-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -1261,11 +997,11 @@ api_instance = swagger_client.DefaultApi()
 carparkId = carparkId_example # String | The unique identifier of the carpark.
 
 try: 
-    # Get Carpark Availability by ID
-    api_response = api_instance.carparks_carpark_id_availability_get(carparkId)
+    # Get Carpark Details and Availability by ID
+    api_response = api_instance.carparks_carpark_id_get(carparkId)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->carparksCarparkIdAvailabilityGet: %s\n" % e)</code></pre>
+    print("Exception when calling DefaultApi->carparksCarparkIdGet: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -1281,7 +1017,7 @@ except ApiException as e:
                                   <td>
                                   
                                   
-                                      <div id="d2e199_carparksCarparkIdAvailabilityGet_carparkId">
+                                      <div id="d2e199_carparksCarparkIdGet_carparkId">
                                           <div class="json-schema-view">
                                               <div class="primitive">
                                                   <span class="type">
@@ -1306,26 +1042,26 @@ except ApiException as e:
 
 
                           <h2>Responses</h2>
-                            <h3> Status: 200 - Carpark availability information returned successfully. </h3>
+                            <h3> Status: 200 - Detailed carpark information and current availability returned successfully. </h3>
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-carparksCarparkIdAvailabilityGet-200-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-carparksCarparkIdGet-200-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-carparksCarparkIdAvailabilityGet-200-schema">
-                                  <div id='responses-carparksCarparkIdAvailabilityGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-carparksCarparkIdGet-200-schema">
+                                  <div id='responses-carparksCarparkIdGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
-  "description" : "Carpark availability information returned successfully.",
+  "description" : "Detailed carpark information and current availability returned successfully.",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/CarparkAvailability"
+        "$ref" : "#/components/schemas/CarparkDetails"
       }
     }
   }
@@ -1343,14 +1079,14 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-carparksCarparkIdAvailabilityGet-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-carparksCarparkIdAvailabilityGet-200-schema-200');
+                                        $('#responses-carparksCarparkIdGet-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-carparksCarparkIdGet-200-schema-200');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-carparksCarparkIdAvailabilityGet-200-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-carparksCarparkIdGet-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
@@ -1419,7 +1155,7 @@ public class DefaultApiExample {
         Double longitude = 1.2; // Double | Longitude of the user's current location.
         Integer radius = 56; // Integer | Search radius in kilometers.
         try {
-            array[CarparkAvailability] result = apiInstance.carparksNearbyGet(latitude, longitude, radius);
+            array[CarparkDetails] result = apiInstance.carparksNearbyGet(latitude, longitude, radius);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#carparksNearbyGet");
@@ -1440,7 +1176,7 @@ public class DefaultApiExample {
         Double longitude = 1.2; // Double | Longitude of the user's current location.
         Integer radius = 56; // Integer | Search radius in kilometers.
         try {
-            array[CarparkAvailability] result = apiInstance.carparksNearbyGet(latitude, longitude, radius);
+            array[CarparkDetails] result = apiInstance.carparksNearbyGet(latitude, longitude, radius);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#carparksNearbyGet");
@@ -1454,9 +1190,9 @@ public class DefaultApiExample {
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
                             <div class="tab-pane" id="examples-Default-carparksNearbyGet-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">Double *latitude = 1.2; // Latitude of the user's current location.
-Double *longitude = 1.2; // Longitude of the user's current location.
-Integer *radius = 56; // Search radius in kilometers.
+                              <pre class="prettyprint"><code class="language-cpp">Double *latitude = 1.2; // Latitude of the user's current location. (optional)
+Double *longitude = 1.2; // Longitude of the user's current location. (optional)
+Integer *radius = 56; // Search radius in kilometers. (optional)
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
@@ -1464,7 +1200,7 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 [apiInstance carparksNearbyGetWith:latitude
     longitude:longitude
     radius:radius
-              completionHandler: ^(array[CarparkAvailability] output, NSError* error) {
+              completionHandler: ^(array[CarparkDetails] output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -1479,10 +1215,11 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
                               <pre class="prettyprint"><code class="language-js">var CarparkAvailabilityApi = require('carpark_availability_api');
 
 var api = new CarparkAvailabilityApi.DefaultApi()
-var latitude = 1.2; // {{Double}} Latitude of the user's current location.
-var longitude = 1.2; // {{Double}} Longitude of the user's current location.
-var radius = 56; // {{Integer}} Search radius in kilometers.
-
+var opts = { 
+  'latitude': 1.2, // {{Double}} Latitude of the user's current location.
+  'longitude': 1.2, // {{Double}} Longitude of the user's current location.
+  'radius': 56 // {{Integer}} Search radius in kilometers.
+};
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -1490,7 +1227,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.carparksNearbyGet(latitude, longitude, radius, callback);
+api.carparksNearbyGet(opts, callback);
 </code></pre>
                             </div>
 
@@ -1512,14 +1249,14 @@ namespace Example
         {
 
             var apiInstance = new DefaultApi();
-            var latitude = 1.2;  // Double | Latitude of the user's current location.
-            var longitude = 1.2;  // Double | Longitude of the user's current location.
-            var radius = 56;  // Integer | Search radius in kilometers.
+            var latitude = 1.2;  // Double | Latitude of the user's current location. (optional) 
+            var longitude = 1.2;  // Double | Longitude of the user's current location. (optional) 
+            var radius = 56;  // Integer | Search radius in kilometers. (optional) 
 
             try
             {
                 // Get Nearby Carparks
-                array[CarparkAvailability] result = apiInstance.carparksNearbyGet(latitude, longitude, radius);
+                array[CarparkDetails] result = apiInstance.carparksNearbyGet(latitude, longitude, radius);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1578,13 +1315,13 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = swagger_client.DefaultApi()
-latitude = 1.2 # Double | Latitude of the user's current location.
-longitude = 1.2 # Double | Longitude of the user's current location.
-radius = 56 # Integer | Search radius in kilometers.
+latitude = 1.2 # Double | Latitude of the user's current location. (optional)
+longitude = 1.2 # Double | Longitude of the user's current location. (optional)
+radius = 56 # Integer | Search radius in kilometers. (optional)
 
 try: 
     # Get Nearby Carparks
-    api_response = api_instance.carparks_nearby_get(latitude, longitude, radius)
+    api_response = api_instance.carparks_nearby_get(latitude=latitude, longitude=longitude, radius=radius)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->carparksNearbyGet: %s\n" % e)</code></pre>
@@ -1603,7 +1340,7 @@ except ApiException as e:
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
-                                <tr><td style="width:150px;">latitude*</td>
+                                <tr><td style="width:150px;">latitude</td>
                                 <td>
                                 
                                 
@@ -1621,14 +1358,11 @@ except ApiException as e:
                                                         Latitude of the user&#x27;s current location.
                                                     </div>
                                             </div>
-                                                <div class="inner required">
-                                                    Required
-                                                </div>
                                         </div>
                                     </div>
                                 </td>
                                 </tr>
-                                <tr><td style="width:150px;">longitude*</td>
+                                <tr><td style="width:150px;">longitude</td>
                                 <td>
                                 
                                 
@@ -1646,14 +1380,11 @@ except ApiException as e:
                                                         Longitude of the user&#x27;s current location.
                                                     </div>
                                             </div>
-                                                <div class="inner required">
-                                                    Required
-                                                </div>
                                         </div>
                                     </div>
                                 </td>
                                 </tr>
-                                <tr><td style="width:150px;">radius*</td>
+                                <tr><td style="width:150px;">radius</td>
                                 <td>
                                 
                                 
@@ -1668,9 +1399,6 @@ except ApiException as e:
                                                         Search radius in kilometers.
                                                     </div>
                                             </div>
-                                                <div class="inner required">
-                                                    Required
-                                                </div>
                                         </div>
                                     </div>
                                 </td>
@@ -1699,7 +1427,7 @@ except ApiException as e:
       "schema" : {
         "type" : "array",
         "items" : {
-          "$ref" : "#/components/schemas/CarparkAvailability"
+          "$ref" : "#/components/schemas/CarparkDetails"
         },
         "x-content-type" : "application/json"
       }
@@ -1727,6 +1455,428 @@ except ApiException as e:
                                     </script>
                                   </div>
                                   <input id='responses-carparksNearbyGet-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-carparksSearchGet">
+                      <article id="api-Default-carparksSearchGet-0" data-group="User" data-name="carparksSearchGet" data-version="0">
+                        <div class="pull-left">
+                          <h1>carparksSearchGet</h1>
+                          <p>Search Carparks with Filters</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked"></p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/carparks/search</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-carparksSearchGet-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-carparksSearchGet-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-carparksSearchGet-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-carparksSearchGet-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-carparksSearchGet-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-carparksSearchGet-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-carparksSearchGet-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-carparksSearchGet-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-carparksSearchGet-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-carparksSearchGet-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-carparksSearchGet-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-carparksSearchGet-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+-H "Accept: application/json"\
+"https://virtserver.swaggerhub.com/KOILJAT/test/1.0.0/carparks/search?latitude=&longitude=&radius=&gantryHeight=&hourlyRate="</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-carparksSearchGet-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+        Double latitude = 1.2; // Double | Latitude of the target location.
+        Double longitude = 1.2; // Double | Longitude of the target location.
+        Integer radius = 56; // Integer | Search radius in kilometers.
+        Double gantryHeight = 1.2; // Double | Minimum gantry height in meters.
+        Double hourlyRate = 1.2; // Double | Maximum hourly parking rate.
+        try {
+            array[CarparkDetails] result = apiInstance.carparksSearchGet(latitude, longitude, radius, gantryHeight, hourlyRate);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#carparksSearchGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-carparksSearchGet-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        Double latitude = 1.2; // Double | Latitude of the target location.
+        Double longitude = 1.2; // Double | Longitude of the target location.
+        Integer radius = 56; // Integer | Search radius in kilometers.
+        Double gantryHeight = 1.2; // Double | Minimum gantry height in meters.
+        Double hourlyRate = 1.2; // Double | Maximum hourly parking rate.
+        try {
+            array[CarparkDetails] result = apiInstance.carparksSearchGet(latitude, longitude, radius, gantryHeight, hourlyRate);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#carparksSearchGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-carparksSearchGet-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-carparksSearchGet-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Double *latitude = 1.2; // Latitude of the target location. (optional)
+Double *longitude = 1.2; // Longitude of the target location. (optional)
+Integer *radius = 56; // Search radius in kilometers. (optional)
+Double *gantryHeight = 1.2; // Minimum gantry height in meters. (optional)
+Double *hourlyRate = 1.2; // Maximum hourly parking rate. (optional)
+
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+// Search Carparks with Filters
+[apiInstance carparksSearchGetWith:latitude
+    longitude:longitude
+    radius:radius
+    gantryHeight:gantryHeight
+    hourlyRate:hourlyRate
+              completionHandler: ^(array[CarparkDetails] output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-carparksSearchGet-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var CarparkAvailabilityApi = require('carpark_availability_api');
+
+var api = new CarparkAvailabilityApi.DefaultApi()
+var opts = { 
+  'latitude': 1.2, // {{Double}} Latitude of the target location.
+  'longitude': 1.2, // {{Double}} Longitude of the target location.
+  'radius': 56, // {{Integer}} Search radius in kilometers.
+  'gantryHeight': 1.2, // {{Double}} Minimum gantry height in meters.
+  'hourlyRate': 1.2 // {{Double}} Maximum hourly parking rate.
+};
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.carparksSearchGet(opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-carparksSearchGet-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-carparksSearchGet-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class carparksSearchGetExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new DefaultApi();
+            var latitude = 1.2;  // Double | Latitude of the target location. (optional) 
+            var longitude = 1.2;  // Double | Longitude of the target location. (optional) 
+            var radius = 56;  // Integer | Search radius in kilometers. (optional) 
+            var gantryHeight = 1.2;  // Double | Minimum gantry height in meters. (optional) 
+            var hourlyRate = 1.2;  // Double | Maximum hourly parking rate. (optional) 
+
+            try
+            {
+                // Search Carparks with Filters
+                array[CarparkDetails] result = apiInstance.carparksSearchGet(latitude, longitude, radius, gantryHeight, hourlyRate);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.carparksSearchGet: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-carparksSearchGet-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+$latitude = 1.2; // Double | Latitude of the target location.
+$longitude = 1.2; // Double | Longitude of the target location.
+$radius = 56; // Integer | Search radius in kilometers.
+$gantryHeight = 1.2; // Double | Minimum gantry height in meters.
+$hourlyRate = 1.2; // Double | Maximum hourly parking rate.
+
+try {
+    $result = $api_instance->carparksSearchGet($latitude, $longitude, $radius, $gantryHeight, $hourlyRate);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->carparksSearchGet: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-carparksSearchGet-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $latitude = 1.2; # Double | Latitude of the target location.
+my $longitude = 1.2; # Double | Longitude of the target location.
+my $radius = 56; # Integer | Search radius in kilometers.
+my $gantryHeight = 1.2; # Double | Minimum gantry height in meters.
+my $hourlyRate = 1.2; # Double | Maximum hourly parking rate.
+
+eval { 
+    my $result = $api_instance->carparksSearchGet(latitude => $latitude, longitude => $longitude, radius => $radius, gantryHeight => $gantryHeight, hourlyRate => $hourlyRate);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->carparksSearchGet: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-carparksSearchGet-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+latitude = 1.2 # Double | Latitude of the target location. (optional)
+longitude = 1.2 # Double | Longitude of the target location. (optional)
+radius = 56 # Integer | Search radius in kilometers. (optional)
+gantryHeight = 1.2 # Double | Minimum gantry height in meters. (optional)
+hourlyRate = 1.2 # Double | Maximum hourly parking rate. (optional)
+
+try: 
+    # Search Carparks with Filters
+    api_response = api_instance.carparks_search_get(latitude=latitude, longitude=longitude, radius=radius, gantryHeight=gantryHeight, hourlyRate=hourlyRate)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->carparksSearchGet: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">latitude</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_carparksSearchGet_latitude">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    Double
+                                                </span>
+                                                    <span class="format">
+                                                        (double)
+                                                    </span>
+                                
+                                                    <div class="inner description">
+                                                        Latitude of the target location.
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">longitude</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_carparksSearchGet_longitude">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    Double
+                                                </span>
+                                                    <span class="format">
+                                                        (double)
+                                                    </span>
+                                
+                                                    <div class="inner description">
+                                                        Longitude of the target location.
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">radius</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_carparksSearchGet_radius">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    Integer
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        Search radius in kilometers.
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">gantryHeight</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_carparksSearchGet_gantryHeight">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    Double
+                                                </span>
+                                                    <span class="format">
+                                                        (double)
+                                                    </span>
+                                
+                                                    <div class="inner description">
+                                                        Minimum gantry height in meters.
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">hourlyRate</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_carparksSearchGet_hourlyRate">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    Double
+                                                </span>
+                                                    <span class="format">
+                                                        (double)
+                                                    </span>
+                                
+                                                    <div class="inner description">
+                                                        Maximum hourly parking rate.
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                            </table>
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - A list of carparks matching the criteria returned successfully. </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-carparksSearchGet-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-carparksSearchGet-200-schema">
+                                  <div id='responses-carparksSearchGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "A list of carparks matching the criteria returned successfully.",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/CarparkDetails"
+        },
+        "x-content-type" : "application/json"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-carparksSearchGet-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-carparksSearchGet-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-carparksSearchGet-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 

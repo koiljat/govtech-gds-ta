@@ -77,9 +77,13 @@ After setting up the virtual environment and installing the dependencies, you're
 The results for the ratings threshold can be found in the resutls folder.
 
 Excellent: 4.5 to 4.9
+
 Very Good: 4 to 4.4
+
 Good: 3.5 to 3.9
+
 Average: 2.5 to 3.4
+
 Poor: 2.2 to 2.2 (Below 2.5)
 
 ## Task 2
@@ -93,5 +97,6 @@ Poor: 2.2 to 2.2 (Below 2.5)
 - AWS CloudWatch: For monitoring, logging, and alarms.
 
 The use of serverless technologies like AWS Lambda and DynamoDB can handle the variable load during peak hours effectively and are cost-efficient due to the pay-as-you-go model.
+
 
 A simple swagger documentation can be found here: https://koiljat.github.io/govtech-gds-ta/

@@ -61,7 +61,8 @@ if __name__ == "__main__":
         grouped_ratings = filter_and_group_ratings(ratings_df)
         sorted_ratings = grouped_ratings.sort_values('rating_text')
         sorted_ratings = sorted_ratings.reset_index(drop=True)
-        logging.info(sorted_ratings)
+        sorted_ratings.to_csv('ratings.csv', index=False)
+        logging.info("ratings.csv saved")
 
     except Exception as e:
         logging.error("An error occurred in task 1c")

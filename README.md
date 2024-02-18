@@ -72,6 +72,24 @@ After setting up the virtual environment and installing the dependencies, you're
 - **Data Retrieval**: Attempts to fetch JSON data from the provided URL. In case of errors, the JSON dataset is available in the `data` folder. See `main.py` for instructions on adjusting the data source.
 - **Results**: You may find ther result for task 1 in the resutls folder. Alternatively, you may also run the main.py script and the csv files will be saved to the local folder.
 
+## Task 1 part 3
+
+The results for the ratings threshold can be found in the resutls folder.
+
+Excellent: 4.5 to 4.9
+Very Good: 4 to 4.4
+Good: 3.5 to 3.9
+Average: 2.5 to 3.4
+Poor: 2.2 to 2.2 (Below 2.5)
+
+## Task 2
 
 ![image](https://github.com/koiljat/govtech-gds-ta/assets/124496128/f846bdaf-186d-42f1-bd6a-1d3b588cca51)
 
+- Amazon API Gateway: Entry point for the Carpark Availability API, handling incoming requests.
+- AWS Lambda: Serverless compute to process the requests and query the database.
+- Amazon DynamoDB: To store and manage carpark details and availability data.
+- Amazon CloudFront: CDN for caching API responses to reduce latency and load on the backend.
+- AWS CloudWatch: For monitoring, logging, and alarms.
+
+The use of serverless technologies like AWS Lambda and DynamoDB can handle the variable load during peak hours effectively and are cost-efficient due to the pay-as-you-go model.

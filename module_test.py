@@ -29,10 +29,6 @@ class TestDataReader(unittest.TestCase):
         self.assertFalse(restaurants.isnull().values.any())
         self.assertFalse(restaurant_events.isnull().values.any())
     
-    def test_map_replace(self):    
-        pass
-        
-    
         
 if __name__ == '__main__':
     unittest.main()

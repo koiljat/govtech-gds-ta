@@ -93,3 +93,5 @@ Poor: 2.2 to 2.2 (Below 2.5)
 - AWS CloudWatch: For monitoring, logging, and alarms.
 
 The use of serverless technologies like AWS Lambda and DynamoDB can handle the variable load during peak hours effectively and are cost-efficient due to the pay-as-you-go model.
+
+A simple swagger documentation can be found here: https://koiljat.github.io/govtech-gds-ta/

@@ -94,7 +94,6 @@ Poor: 2.2 to 2.2 (Below 2.5)
 - AWS Lambda: Serverless compute to process the requests and query the database.
 - Amazon DynamoDB: To store and manage carpark details and availability data.
 - Amazon CloudFront: CDN for caching API responses to reduce latency and load on the backend.
-- AWS CloudWatch: For monitoring, logging, and alarms.
 
 The use of serverless technologies like AWS Lambda and DynamoDB can handle the variable load during peak hours effectively and are cost-efficient due to the pay-as-you-go model.
 

@@ -73,4 +73,5 @@ After setting up the virtual environment and installing the dependencies, you're
 - **Results**: You may find ther result for task 1 in the resutls folder. Alternatively, you may also run the main.py script and the csv files will be saved to the local folder.
 
 
+![image](https://github.com/koiljat/govtech-gds-ta/assets/124496128/f846bdaf-186d-42f1-bd6a-1d3b588cca51)
 
